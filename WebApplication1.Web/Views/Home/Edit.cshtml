@@ -1,0 +1,9 @@
+﻿@{
+    ViewData["Title"] = "Edit Client";
+}
+
+<client params="listLink: '@Url.Action("Index", "Home")', clientStatusEnum: @Model.ClientStatusJson, mode: 'edit', clientId:@Model.ClientId"></client>
+
+@section Scripts {
+    @Html.Partial("Partials/_ClientComponentScript")
+}

@@ -1,0 +1,77 @@
+﻿<div class="panel panel-default center-block">
+    <div class="panel-heading">
+        <h1 class="text-center" data-bind="text: pageTitle"></h1>
+    </div>
+    <div class="panel-body">
+        <p data-bind="visible: isEditMode">
+            <button data-bind="click: enableEdit" class="btn btn-default btn-success">
+                <span data-bind="css: {'glyphicon-eye-open': editEnabled(), 'glyphicon-pencil': !editEnabled()}" class="glyphicon" aria-hidden="true"></span> <span data-bind="text: editLabel"></span>
+            </button>
+            <button data-bind="click: deleteClick, enable: editEnabled" class="btn btn-default btn-danger">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete
+            </button>
+        </p>
+        
+        <form class="form-horizontal">
+            <div class="form-group has-feedback" data-bind="validationElement: name">
+                <label for="inputName" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input data-bind="textInput: name, enable: editEnabled" type="text" class="form-control" id="inputName" placeholder="Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="selectCategory" class="col-sm-2 control-label">Category</label>
+                <div class="col-sm-10">
+                    <select data-bind="options: categories, optionsText: 'name', optionsValue: 'categoryId', value: categoryId, enable: editEnabled" class="form-control" id="selectCategory"></select>
+                </div>
+            </div>
+            <div class="form-group" data-bind="validationElement: email">
+                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-10">
+                    <input data-bind="textInput: email, enable: editEnabled" type="email" class="form-control" id="inputEmail" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPhone" class="col-sm-2 control-label">Phone</label>
+                <div class="col-sm-10">
+                    <input data-bind="textInput: phone, enable: editEnabled" type="tel" class="form-control" id="inputPhone" placeholder="Phone">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputFax" class="col-sm-2 control-label">Fax</label>
+                <div class="col-sm-10">
+                    <input data-bind="textInput: fax, enable: editEnabled" type="tel" class="form-control" id="inputFax" placeholder="Fax">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputAddress" class="col-sm-2 control-label">Address</label>
+                <div class="col-sm-10">
+                    <input data-bind="textInput: address, enable: editEnabled" type="text" class="form-control" id="inputAddress" placeholder="Address">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="selectStatus" class="col-sm-2 control-label">Status</label>
+                <div class="col-sm-10">
+                    <select data-bind="options: statuses, optionsText: 'name', optionsValue: 'id', value: status, enable: editEnabled" class="form-control" id="selectStatus"></select>
+                </div>
+            </div>
+            <div class="form-group" data-bind="visible: isEditMode">
+                <label for="selectStatus" class="col-sm-2 control-label">Created On</label>
+                <div class="col-sm-10">
+                    <input data-bind="value: createdOn" type="datetime" class="form-control" id="createdOn" readonly="readonly">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button data-bind="click: saveClick, enable: canSave" type="submit" class="btn btn-primary">Save</button>
+                    <button data-bind="click: redirectToList"  class="btn btn-default">Cancel</button>
+                </div>
+            </div>
+            <div data-bind="visible: showError()" class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                <span data-bind="text: error"></span>
+            </div>
+        </form>
+    </div>
+</div>

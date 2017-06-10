@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Clients";
+}
+
+<clients-list params="addLink: '@Url.Action("Add", "Home")', editLink: '@Url.Action("Edit", "Home", new { id = "CLIENTID"})'"></clients-list>
+
+@section Scripts {
+    <script>
+        require(['knockout', 'jquery', 'bootstrap', 'components/clients-list.component'], function (ko) {
+            ko.applyBindings();
+        });
+    </script>
+}

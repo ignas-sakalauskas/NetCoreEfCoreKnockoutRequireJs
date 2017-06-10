@@ -1,0 +1,9 @@
+﻿@{
+    ViewData["Title"] = "Add Client";
+}
+
+<client params="listLink: '@Url.Action("Index", "Home")', clientStatusEnum: @Model.ClientStatusJson, mode: 'add'"></client>
+
+@section Scripts {
+    @Html.Partial("Partials/_ClientComponentScript")
+}

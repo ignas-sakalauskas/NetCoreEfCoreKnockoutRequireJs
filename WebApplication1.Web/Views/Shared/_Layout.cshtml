@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApplication1 Technical Test</title>
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    </environment>
+    <environment names="Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <environment names="Development">
+        <script src="~/lib/requirejs/require.js" asp-append-version="false"></script>
+    </environment>
+    <environment names="Production">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.min.js"
+                asp-fallback-src="~/lib/requirejs/require.js"
+                asp-fallback-test="requirejs && require"
+                crossorigin="anonymous">
+        </script>
+    </environment>
+
+    <script>
+    var basePath = '@Url.Content("~/")';
+    require.config({
+        baseUrl: basePath + "app",
+        shim: {
+            "bootstrap": { "deps": ['jquery'] },
+            "knockout-validation": { "deps": ['knockout'] }
+        },
+        paths: {
+            'jquery': basePath + 'lib/jquery/dist/jquery',
+            'knockout': basePath + 'lib/knockout/dist/knockout',
+            'text': basePath + 'lib/text/text',
+            'bootstrap': basePath + 'lib/bootstrap/dist/js/bootstrap',
+            'knockout-validation': basePath + 'lib/knockout-validation/dist/knockout.validation'
+        }
+    });
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

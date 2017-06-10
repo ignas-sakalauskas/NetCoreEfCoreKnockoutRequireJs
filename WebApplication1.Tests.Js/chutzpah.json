@@ -1,0 +1,23 @@
+﻿{
+  "Framework": "jasmine",
+  "TestHarnessReferenceMode": "AMD",
+  "TestFileTimeout": 9000,
+  "TestHarnessLocationMode": "SettingsFileAdjacent",
+  "CodeCoverageIncludes": [
+    "wwwroot/app/*.js"
+  ],
+  "CodeCoverageExecutionMode": "Manual",
+  "References": [
+    { "Path": "../WebApplication1.Web/wwwroot/lib/requirejs/require.js" },
+    { "Path": "require.config.js" },
+    {
+      "Path": "wwwroot/specs/",
+      "Includes": [ "**-data.js" ]
+    }
+  ],
+  "Tests": [
+    {
+      "Includes": [ "*.spec.js" ]
+    }
+  ]
+}

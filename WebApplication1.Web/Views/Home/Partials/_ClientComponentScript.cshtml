@@ -1,0 +1,8 @@
+﻿<script>
+    require(['knockout', 'knockout-validation', 'jquery', 'bootstrap', 'components/client.component'], function (ko) {
+        ko.validation.init({
+            errorElementClass: "has-error"
+        });
+        ko.applyBindingsWithValidation();
+    });
+</script>
