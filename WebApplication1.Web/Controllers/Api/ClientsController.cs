@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -45,7 +46,7 @@ namespace WebApplication1.Web.Controllers.Api
             catch (Exception e)
             {
                 _logger.LogError(0, e, e.Message);
-                return BadRequest(e.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
         }
 
@@ -76,7 +77,7 @@ namespace WebApplication1.Web.Controllers.Api
             catch (Exception e)
             {
                 _logger.LogError(0, e, e.Message);
-                return BadRequest(e.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
         }
 

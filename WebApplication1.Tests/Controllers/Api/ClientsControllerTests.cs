@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
@@ -68,7 +69,7 @@ namespace WebApplication1.Tests.Controllers.Api
         }
 
         [TestMethod]
-        public async Task Get_ShouldReturnBadResult_WhenExceptionIsThrown()
+        public async Task Get_ShouldReturnInternalServerError_WhenExceptionIsThrown()
         {
             // Arrange
             _clientDataServiceMock.Setup(x => x.GetClients())
@@ -79,9 +80,10 @@ namespace WebApplication1.Tests.Controllers.Api
             var result = await controller.Get();
 
             // Assert
-            result.Should().BeOfType<BadRequestObjectResult>()
-                .Which.Value.Should().BeOfType<string>()
-                .Which.Should().Contain("Exception");
+            result.Should().BeOfType<ObjectResult>()
+                .Which.StatusCode.Should().Be((int)HttpStatusCode.InternalServerError);
+            result.Should().BeOfType<ObjectResult>()
+                .Which.Value.ToString().Should().Contain("Exception");
             _clientDataServiceMock.VerifyAll();
         }
 
@@ -121,7 +123,7 @@ namespace WebApplication1.Tests.Controllers.Api
         }
 
         [TestMethod]
-        public async Task GetById_ShouldReturnBadResult_WhenExceptionIsThrown()
+        public async Task GetById_ShouldReturnInternalServerError_WhenExceptionIsThrown()
         {
             // Arrange
             const int clientId = 1;
@@ -133,9 +135,10 @@ namespace WebApplication1.Tests.Controllers.Api
             var result = await controller.Get(clientId);
 
             // Assert
-            result.Should().BeOfType<BadRequestObjectResult>()
-                .Which.Value.Should().BeOfType<string>()
-                .Which.Should().Contain("Exception");
+            result.Should().BeOfType<ObjectResult>()
+                .Which.StatusCode.Should().Be((int)HttpStatusCode.InternalServerError);
+            result.Should().BeOfType<ObjectResult>()
+                .Which.Value.ToString().Should().Contain("Exception");
             _clientDataServiceMock.VerifyAll();
         }
 

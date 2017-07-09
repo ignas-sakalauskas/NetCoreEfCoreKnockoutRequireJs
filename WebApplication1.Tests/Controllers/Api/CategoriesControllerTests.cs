@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
@@ -67,7 +68,7 @@ namespace WebApplication1.Tests.Controllers.Api
         }
 
         [TestMethod]
-        public async Task Get_ShouldReturnBadResult_WhenExceptionIsThrown()
+        public async Task Get_ShouldReturnInternalServerError_WhenExceptionIsThrown()
         {
             // Arrange
             _categoriesDataServiceMock.Setup(x => x.GetCategories())
@@ -78,9 +79,10 @@ namespace WebApplication1.Tests.Controllers.Api
             var result = await controller.Get();
 
             // Assert
-            result.Should().BeOfType<BadRequestObjectResult>()
-                .Which.Value.Should().BeOfType<string>()
-                .Which.Should().Contain("Exception");
+            result.Should().BeOfType<ObjectResult>()
+                .Which.StatusCode.Should().Be((int)HttpStatusCode.InternalServerError);
+            result.Should().BeOfType<ObjectResult>()
+                .Which.Value.ToString().Should().Contain("Exception");
             _categoriesDataServiceMock.VerifyAll();
         }
 
@@ -119,7 +121,7 @@ namespace WebApplication1.Tests.Controllers.Api
         }
 
         [TestMethod]
-        public async Task Post_ShouldReturnBadResult_WhenExceptionIsThrown()
+        public async Task Post_ShouldReturnInternalServerError_WhenExceptionIsThrown()
         {
             // Arrange
             var category = new Category { CategoryId = 1 };
@@ -131,9 +133,10 @@ namespace WebApplication1.Tests.Controllers.Api
             var result = await controller.Post(category);
 
             // Assert
-            result.Should().BeOfType<BadRequestObjectResult>()
-                .Which.Value.Should().BeOfType<string>()
-                .Which.Should().Contain("Exception");
+            result.Should().BeOfType<ObjectResult>()
+                .Which.StatusCode.Should().Be((int)HttpStatusCode.InternalServerError);
+            result.Should().BeOfType<ObjectResult>()
+                .Which.Value.ToString().Should().Contain("Exception");
             _categoriesDataServiceMock.VerifyAll();
         }
 
