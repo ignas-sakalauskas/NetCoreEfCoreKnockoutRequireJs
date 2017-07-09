@@ -1,47 +1,43 @@
 ﻿define(["jquery"], function (jquery) {
 
-    jquery.each(["post", "put", "delete"], function (i, method) {
-        jquery[method] = function (url, data, callback) {
-
-            return jquery.ajax({
-                url: url,
-                headers: {
-                    'Accept': "application/json",
-                    'Content-Type': "application/json; charset=utf-8"
-                },
-                type: method,
-                dataType: "json",
-                data: JSON.stringify(data),
-                success: callback,
-                jsonp: false
-            });
-        };
-    });
-
     function HttpService() {
         return {
-            get: get,
-            post: post,
-            put: put,
+            get: getMethod,
+            post: postMethod,
+            put: putMethod,
             delete: deleteMethod
         };
     }
 
-    function get(url) {
-        return jquery.get(url);
+    function getMethod(url) {
+        return ajaxCall(url, "GET");
     };
 
-    function post(url, data) {
-        return jquery.post(url, data);
+    function postMethod(url, data) {
+        return ajaxCall(url, "POST", data);
     };
 
-    function put(url, data) {
-        return jquery.put(url, data);
+    function putMethod(url, data) {
+        return ajaxCall(url, "PUT", data);
     };
 
     function deleteMethod(url) {
-        return jquery.delete(url);
+        return ajaxCall(url, "DELETE");
     };
+
+    function ajaxCall(url, method, data) {
+        return jquery.ajax({
+            url: url,
+            method: method,
+            data: JSON.stringify(data),
+            headers: {
+                'Accept': "application/json",
+                'Content-Type': "application/json; charset=utf-8"
+            },
+            dataType: "json",
+            jsonp: false
+        });
+    }
 
     return HttpService();
 });
