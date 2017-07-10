@@ -42,3 +42,6 @@ Besides the functionality required by the technical test, following was added:
 *	CreatedOn field which stores record creation date and time. Displayed as read-only in UI.
 *	Search field on the main page. Performs filtering of loaded clients (UI filtering only).
 *	Category option was added to assign a category to each client – the same category could be assigned to multiple clients. To keep the application simple, only Create and Get operations available.
+
+## Blog Post
+Blog post with more details about the implementation: https://ignas.me/tech/net-core-knockoutjs-web-application/
