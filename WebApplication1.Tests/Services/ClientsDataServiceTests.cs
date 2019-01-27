@@ -50,7 +50,7 @@ namespace WebApplication1.Tests.Services
             Action action = () => new ClientsDataService(null);
 
             // Assert
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [TestMethod]
@@ -108,7 +108,7 @@ namespace WebApplication1.Tests.Services
                 Func<Task> action = async () => await service.GetClient(0);
 
                 // Assert
-                action.ShouldThrow<ClientNotFoundException>();
+                action.Should().Throw<ClientNotFoundException>();
             }
         }
 
@@ -168,7 +168,7 @@ namespace WebApplication1.Tests.Services
                 Func<Task> action = async () => await service.AddClient(null);
 
                 // Assert
-                action.ShouldThrow<ArgumentNullException>();
+                action.Should().Throw<ArgumentNullException>();
             }
         }
 
@@ -232,7 +232,7 @@ namespace WebApplication1.Tests.Services
                 Func<Task> action = async () => await service.UpdateClient(0, null);
 
                 // Assert
-                action.ShouldThrow<ArgumentNullException>();
+                action.Should().Throw<ArgumentNullException>();
             }
         }
 
@@ -253,7 +253,7 @@ namespace WebApplication1.Tests.Services
                 Func<Task> action = async () => await service.UpdateClient(0, new Client());
 
                 // Assert
-                action.ShouldThrow<ClientNotFoundException>();
+                action.Should().Throw<ClientNotFoundException>();
             }
         }
 
@@ -286,7 +286,7 @@ namespace WebApplication1.Tests.Services
                 var result = await service.UpdateClient(clientId, expectedClient);
 
                 // Assert
-                result.ShouldBeEquivalentTo(expectedClient);
+                result.Should().BeEquivalentTo(expectedClient);
             }
         }
 
@@ -334,7 +334,7 @@ namespace WebApplication1.Tests.Services
                 Func<Task> action = async () => await service.DeleteClient(0);
 
                 // Assert
-                action.ShouldThrow<ClientNotFoundException>();
+                action.Should().Throw<ClientNotFoundException>();
             }
         }
 

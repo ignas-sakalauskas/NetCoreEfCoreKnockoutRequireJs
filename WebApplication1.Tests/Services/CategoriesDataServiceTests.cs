@@ -47,7 +47,7 @@ namespace WebApplication1.Tests.Services
             Action action = () => new CategoriesDataService(null);
 
             // Assert
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [TestMethod]
@@ -82,7 +82,7 @@ namespace WebApplication1.Tests.Services
                 Func<Task> action = async () => await service.AddCategory(null);
 
                 // Assert
-                action.ShouldThrow<ArgumentNullException>();
+                action.Should().Throw<ArgumentNullException>();
             }
         }
 

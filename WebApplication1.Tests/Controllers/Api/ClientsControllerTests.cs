@@ -41,7 +41,7 @@ namespace WebApplication1.Tests.Controllers.Api
             Action action = () => new ClientsController(_clientDataServiceMock.Object, _loggerFactoryMock.Object);
 
             // Assert
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [TestMethod]
@@ -53,7 +53,7 @@ namespace WebApplication1.Tests.Controllers.Api
             Action action = () => new ClientsController(_clientDataServiceMock.Object, null);
 
             // Assert
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [TestMethod]
@@ -65,7 +65,7 @@ namespace WebApplication1.Tests.Controllers.Api
             Action action = () => new ClientsController(null, _loggerFactoryMock.Object);
 
             // Assert
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [TestMethod]

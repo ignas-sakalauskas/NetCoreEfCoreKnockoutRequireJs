@@ -22,7 +22,7 @@ namespace WebApplication1.Tests.Helpers
             Action action = () => EnumHelpers.ConvertToJsonDictionary<TestClass>();
 
             // Assert
-            action.ShouldThrow<ArgumentException>();
+            action.Should().Throw<ArgumentException>();
         }
 
         [TestMethod]
@@ -33,7 +33,7 @@ namespace WebApplication1.Tests.Helpers
             Action action = () => EnumHelpers.ConvertToJsonDictionary<int>();
 
             // Assert
-            action.ShouldThrow<ArgumentException>();
+            action.Should().Throw<ArgumentException>();
         }
 
         [TestMethod]

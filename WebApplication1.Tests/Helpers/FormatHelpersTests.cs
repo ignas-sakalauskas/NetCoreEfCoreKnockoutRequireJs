@@ -18,7 +18,7 @@ namespace WebApplication1.Tests.Helpers
             Action action = () => FormatHelpers.FormatValidationErrorMessage(null);
 
             // Assert
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [TestMethod]

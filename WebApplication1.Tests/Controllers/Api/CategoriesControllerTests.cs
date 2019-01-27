@@ -40,7 +40,7 @@ namespace WebApplication1.Tests.Controllers.Api
             Action action = () => new CategoriesController(_categoriesDataServiceMock.Object, _loggerFactoryMock.Object);
 
             // Assert
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [TestMethod]
@@ -52,7 +52,7 @@ namespace WebApplication1.Tests.Controllers.Api
             Action action = () => new CategoriesController(_categoriesDataServiceMock.Object, null);
 
             // Assert
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [TestMethod]
@@ -64,7 +64,7 @@ namespace WebApplication1.Tests.Controllers.Api
             Action action = () => new CategoriesController(null, _loggerFactoryMock.Object);
 
             // Assert
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [TestMethod]
